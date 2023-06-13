@@ -40,8 +40,16 @@ export type Image = {
   height: number;
 };
 
-export type Menu = {
+export type MenuItem = {
   title: string;
+  path: string;
+  tags: string;
+};
+
+export type Menu = {
+  items: [MenuItem];
+  title: string;
+  itemsCount: number;
   path: string;
 };
 
@@ -104,6 +112,7 @@ export type ShopifyCollection = {
   handle: string;
   title: string;
   description: string;
+  image: Image;
   seo: SEO;
   updatedAt: string;
 };

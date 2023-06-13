@@ -5,6 +5,8 @@ export const getMenuQuery = /* GraphQL */ `
         title
         url
       }
+      title
+      itemsCount
     }
   }
 `;

@@ -1,6 +1,10 @@
 import { Carousel } from 'components/carousel';
-import { ThreeItemGrid } from 'components/grid/three-items';
+import Grid from 'components/grid';
+import CollectionGridItems from 'components/layout/collection-grid-items';
 import Footer from 'components/layout/footer';
+import Hero from 'components/layout/hero';
+import LoadingDots from 'components/loading-dots';
+import { getCollections } from 'lib/shopify';
 import { Suspense } from 'react';
 
 export const runtime = 'edge';
@@ -20,17 +24,31 @@ export const metadata = {
 };
 
 export default async function HomePage() {
+  const collections = await getCollections();
+
   return (
     <>
-      {/* @ts-expect-error Server Component */}
-      <ThreeItemGrid />
-      <Suspense>
+      <Suspense fallback={<LoadingDots className="" />}>
+        {/* @ts-expect-error Server Component */}
+        <Hero />
+      </Suspense>
+      <Suspense fallback={<LoadingDots className="" />}>
         {/* @ts-expect-error Server Component */}
         <Carousel />
-        <Suspense>
-          {/* @ts-expect-error Server Component */}
-          <Footer />
-        </Suspense>
+      </Suspense>
+      <Suspense fallback={<LoadingDots className="" />}>
+        {collections.length > 0 ? (
+          <>
+            <h2 className="">Sales & Featured Collections</h2>
+            <Grid className="grid-cols-3 lg:grid-cols-5">
+              <CollectionGridItems collections={collections} />
+            </Grid>
+          </>
+        ) : null}
+      </Suspense>
+      <Suspense>
+        {/* @ts-expect-error Server Component */}
+        <Footer />
       </Suspense>
     </>
   );

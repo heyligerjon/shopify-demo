@@ -21,6 +21,10 @@ module.exports = {
         light: '#FAFAFA',
         violetDark: '#4c2889'
       },
+      height: {
+        112: '28rem',
+        128: '32rem'
+      },
       keyframes: {
         fadeIn: {
           from: { opacity: 0 },
