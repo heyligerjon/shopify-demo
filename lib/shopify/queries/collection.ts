@@ -36,6 +36,19 @@ export const getCollectionsQuery = /* GraphQL */ `
   ${collectionFragment}
 `;
 
+export const getTopCollectionsQuery = /* GraphQL */ `
+  query getTopCollections {
+    collections(first: 9, sortKey: TITLE) {
+      edges {
+        node {
+          ...collection
+        }
+      }
+    }
+  }
+  ${collectionFragment}
+`;
+
 export const getCollectionProductsQuery = /* GraphQL */ `
   query getCollectionProducts(
     $handle: String!

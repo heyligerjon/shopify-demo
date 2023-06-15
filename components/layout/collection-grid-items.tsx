@@ -15,7 +15,7 @@ export default function CollectionGridItems({ collections }: { collections: Coll
                 isSmall: true,
                 title: collection.title
               }}
-              src={collection.image?.url}
+              src={collection.path}
               width={600}
               height={600}
             />

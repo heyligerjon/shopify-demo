@@ -4,7 +4,8 @@ import CollectionGridItems from 'components/layout/collection-grid-items';
 import Footer from 'components/layout/footer';
 import Hero from 'components/layout/hero';
 import LoadingDots from 'components/loading-dots';
-import { getCollections } from 'lib/shopify';
+import { getCollection, getTopCollections } from 'lib/shopify';
+import { Collection } from 'lib/shopify/types';
 import { Suspense } from 'react';
 
 export const runtime = 'edge';
@@ -24,13 +25,17 @@ export const metadata = {
 };
 
 export default async function HomePage() {
-  const collections = await getCollections();
+  const collections = await getTopCollections();
+
+  const mens = await getCollection('mens-all');
+  const womens = await getCollection('womens-all');
+  let hero: (Collection | undefined)[] = [mens, womens];
 
   return (
     <>
       <Suspense fallback={<LoadingDots className="" />}>
         {/* @ts-expect-error Server Component */}
-        <Hero />
+        <Hero className="" collections={hero} />
       </Suspense>
       <Suspense fallback={<LoadingDots className="" />}>
         {/* @ts-expect-error Server Component */}
@@ -39,8 +44,8 @@ export default async function HomePage() {
       <Suspense fallback={<LoadingDots className="" />}>
         {collections.length > 0 ? (
           <>
-            <h2 className="">Sales & Featured Collections</h2>
-            <Grid className="grid-cols-3 lg:grid-cols-5">
+            <h2 className="m-3 pt-5 text-xl">Shop by Collection</h2>
+            <Grid className="m-5 grid-cols-3 lg:grid-cols-5">
               <CollectionGridItems collections={collections} />
             </Grid>
           </>

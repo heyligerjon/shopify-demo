@@ -33,16 +33,15 @@ export default function Toolbar({ menu }: { menu: Menu[] }) {
   return (
     <>
       {menu.length ? (
-        <ul className="hidden justify-around md:flex">
+        <ul className="hidden justify-around p-3 md:flex">
           {menu.map((item: Menu) => (
-            <li key={item.title}>
+            <li key={item.title} className="text-sm font-semibold">
               <Link
                 href={item.path}
                 className="rounded-lg px-2 py-1 text-gray-800 hover:text-gray-500 dark:text-gray-200 dark:hover:text-gray-400"
               >
                 {item.title}
               </Link>
-              {item.itemsCount}
               {/* ? (
                 <div>
                   <p>Test</p>
