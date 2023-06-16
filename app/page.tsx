@@ -38,13 +38,14 @@ export default async function HomePage() {
         <Hero className="" collections={hero} />
       </Suspense>
       <Suspense fallback={<LoadingDots className="" />}>
+        <h2 className="m-5 pt-5 text-xl">Featured Products</h2>
         {/* @ts-expect-error Server Component */}
         <Carousel />
       </Suspense>
       <Suspense fallback={<LoadingDots className="" />}>
         {collections.length > 0 ? (
           <>
-            <h2 className="m-3 pt-5 text-xl">Shop by Collection</h2>
+            <h2 className="m-5 pt-5 text-xl">Shop by Collection</h2>
             <Grid className="m-5 grid-cols-3 lg:grid-cols-5">
               <CollectionGridItems collections={collections} />
             </Grid>

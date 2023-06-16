@@ -11,14 +11,12 @@ export default function CollectionGridItems({ collections }: { collections: Coll
           <Link className="h-full w-full" href={`/collection/${collection.handle}`}>
             <CollectionTileImage
               alt={collection.title}
-              labels={{
-                isSmall: true,
-                title: collection.title
-              }}
-              src={collection.path}
-              width={600}
-              height={600}
+              src={collection.image.url}
+              background="black"
+              width={120}
+              height={120}
             />
+            <p>{collection.title}</p>
           </Link>
         </Grid.Item>
       ))}

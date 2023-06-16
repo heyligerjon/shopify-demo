@@ -14,7 +14,7 @@ export default async function Hero({ collections }: { collections: Collection[] 
               <Link className="h-2/5 w-full" href={`${collection.path}`}>
                 <CollectionTileImage
                   alt={collection.title}
-                  src={collection.path}
+                  src={collection.image.url}
                   width={120}
                   height={120}
                 />

@@ -104,6 +104,7 @@ export type ShopifyCollection = {
   handle: string;
   title: string;
   description: string;
+  image: Image;
   seo: SEO;
   updatedAt: string;
 };

@@ -10,7 +10,8 @@ import { getCartQuery } from './queries/cart';
 import {
   getCollectionProductsQuery,
   getCollectionQuery,
-  getCollectionsQuery
+  getCollectionsQuery,
+  getTopCollectionsQuery
 } from './queries/collection';
 import { getMenuQuery } from './queries/menu';
 import { getPageQuery, getPagesQuery } from './queries/page';
@@ -129,6 +130,12 @@ const reshapeCollection = (collection: ShopifyCollection): Collection | undefine
 
   return {
     ...collection,
+    image: {
+      altText: collection.title,
+      url: collection.image.url,
+      width: collection.image.width,
+      height: collection.image.height
+    },
     path: `/search/${collection.handle}`
   };
 };
@@ -295,6 +302,12 @@ export async function getCollections(): Promise<Collection[]> {
         title: 'All',
         description: 'All products'
       },
+      image: {
+        altText: 'All',
+        url: '',
+        width: 0,
+        height: 0
+      },
       path: '/search',
       updatedAt: new Date().toISOString()
     },
@@ -309,7 +322,7 @@ export async function getCollections(): Promise<Collection[]> {
 }
 
 export async function getTopCollections(): Promise<Collection[]> {
-  const res = await shopifyFetch<ShopifyCollectionsOperation>({ query: getCollectionsQuery });
+  const res = await shopifyFetch<ShopifyCollectionsOperation>({ query: getTopCollectionsQuery });
   const shopifyCollections = removeEdgesAndNodes(res.body?.data?.collections);
   const collections = [
     {
@@ -319,6 +332,12 @@ export async function getTopCollections(): Promise<Collection[]> {
       seo: {
         title: 'All',
         description: 'All products'
+      },
+      image: {
+        altText: 'All',
+        url: '',
+        width: 0,
+        height: 0
       },
       path: '/search',
       updatedAt: new Date().toISOString()

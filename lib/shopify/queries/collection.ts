@@ -1,4 +1,5 @@
 import productFragment from '../fragments/product';
+import imageFragment from '../fragments/image';
 import seoFragment from '../fragments/seo';
 
 const collectionFragment = /* GraphQL */ `
@@ -6,11 +7,15 @@ const collectionFragment = /* GraphQL */ `
     handle
     title
     description
+    image {
+      ...image
+    }
     seo {
       ...seo
     }
     updatedAt
   }
+  ${imageFragment}
   ${seoFragment}
 `;
 
@@ -38,7 +43,7 @@ export const getCollectionsQuery = /* GraphQL */ `
 
 export const getTopCollectionsQuery = /* GraphQL */ `
   query getTopCollections {
-    collections(first: 9, sortKey: TITLE) {
+    collections(first: 10, sortKey: RELEVANCE) {
       edges {
         node {
           ...collection
