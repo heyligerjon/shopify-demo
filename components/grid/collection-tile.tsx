@@ -2,10 +2,11 @@ import clsx from 'clsx';
 import Image from 'next/image';
 
 export function CollectionTileImage({
-  isInteractive = true,
+  isInteractive = false,
   background,
   active,
   labels,
+  hero,
   ...props
 }: {
   isInteractive?: boolean;
@@ -15,6 +16,8 @@ export function CollectionTileImage({
     title: string;
     isSmall?: boolean;
   };
+  hero?: boolean;
+  description?: string;
 } & React.ComponentProps<typeof Image>) {
   return (
     <div
@@ -54,6 +57,16 @@ export function CollectionTileImage({
           >
             {labels.title}
           </h3>
+        </div>
+      ) : null}
+      {hero ? (
+        <div className="z-100 absolute h-full w-2/3">
+          <p className="z-100 absolute left-[10%] top-36 w-4/5 text-center text-3xl">
+            {props.description}
+          </p>
+          <button className="z-100 absolute bottom-36 left-1/4 w-1/2 border-2 border-solid p-3 text-xl transition duration-300 ease-in-out hover:border-violet-950 hover:bg-violet-950">
+            Shop {props.title}
+          </button>
         </div>
       ) : null}
     </div>

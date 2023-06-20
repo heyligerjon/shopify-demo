@@ -17,6 +17,9 @@ export default async function Hero({ collections }: { collections: Collection[] 
                   src={collection.image.url}
                   width={120}
                   height={120}
+                  title={collection.title}
+                  description={collection.description}
+                  hero
                 />
               </Link>
             </div>
