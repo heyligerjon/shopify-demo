@@ -65,7 +65,7 @@ export function CollectionTileImage({
             <p className="z-100 absolute left-[10%] top-36 w-4/5 text-center text-3xl">
               {props.description}
             </p>
-            <button className="z-100 duration-250 absolute bottom-36 left-[20%] w-[60%] border-2 border-solid p-3 text-xl transition ease-in-out hover:border-violet-950 hover:bg-violet-950">
+            <button className="z-100 duration-250 absolute bottom-48 left-[20%] w-[60%] border-2 border-solid p-3 text-xl transition ease-in-out hover:border-violet-950 hover:bg-violet-950">
               Shop {props.title}
             </button>
           </div>
