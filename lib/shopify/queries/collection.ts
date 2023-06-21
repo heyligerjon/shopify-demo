@@ -43,7 +43,7 @@ export const getCollectionsQuery = /* GraphQL */ `
 
 export const getTopCollectionsQuery = /* GraphQL */ `
   query getTopCollections {
-    collections(first: 10, sortKey: RELEVANCE) {
+    collections(first: 7, sortKey: RELEVANCE) {
       edges {
         node {
           ...collection

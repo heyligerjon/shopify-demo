@@ -46,7 +46,7 @@ export default async function HomePage() {
         {collections.length > 0 ? (
           <>
             <h2 className="m-5 pt-5 text-xl">Shop by Collection</h2>
-            <Grid className="m-5 grid-cols-3 lg:grid-cols-5">
+            <Grid className="m-5 grid-cols-2 lg:grid-cols-4">
               <CollectionGridItems collections={collections} />
             </Grid>
           </>
